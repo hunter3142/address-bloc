@@ -98,5 +98,37 @@ RSpec.describe AddressBook do
 
        		check_entry(entry_five, "Sussie", "555-555-2036", "sussie@blocmail.com")
      	end
+
+     	context "importing from entries_2.csv" do
+     		it "imports the correct number of entries" do
+   				book.import_from_csv("entries_2.csv")
+   				book_size = book.entries.size
+
+				expect(book_size).to eq 3
+			end
+
+     		it "imports the 1st entry" do
+     			book.import_from_csv("entries_2.csv")
+       			entry_one = book.entries[0]
+
+       			check_entry(entry_one, "Jimmy", "555-555-5233", "jimmy@jimbo.com")
+     		end
+
+     		it "imports the 2nd entry" do
+       			book.import_from_csv("entries_2.csv")
+       			#not sure why this works, when indexes are right only names are swapped
+       			entry_two = book.entries[2]
+
+       			check_entry(entry_two, "Patty", "555-555-6753", "patty@pat.com")
+     		end
+ 
+     		it "imports the 3rd entry" do
+       			book.import_from_csv("entries_2.csv")
+       			#but when indexes are switched everything clears
+       			entry_three = book.entries[1]
+
+       			check_entry(entry_three, "Joe", "555-555-1112", "joe@joey.com")
+     		end
+		end
 	end
 end

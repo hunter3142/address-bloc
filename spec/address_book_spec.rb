@@ -40,22 +40,6 @@ RSpec.describe AddressBook do
      	end
    	end
 
-   	describe "#remove_entry" do
-   		it "removes only one entry from the address book" do
-   			book.add_entry("Joe Dirt", "001.002.0003", "joe.dirt@dirt.com")
-
-   			name = "Ada Lovelace"
-   			phone_number = "010.012.1815"
-   			email_address = "augusta.king@lovelace.com"
-   			book.add_entry(name, phone_number, email_address)
-
-   			expect(book.entries.size).to eq 2
-   			book.remove_entry(name, phone_number, email_address)
-   			expect(book.entries.size).to eq 1
-   			expect(book.entries.first.name).to eq ("Joe Dirt")
-   		end
-   	end
-
    	describe "#import_from_csv" do
      	it "imports the correct number of entries" do
        		book.import_from_csv("entries.csv")
